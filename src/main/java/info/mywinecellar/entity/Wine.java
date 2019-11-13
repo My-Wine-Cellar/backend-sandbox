@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 public class Wine extends PanacheEntity {
 
     private String name;
-    private Integer vintage;
+    private String vintage;
     private String varietal;
 
     public Wine() {
@@ -22,11 +22,11 @@ public class Wine extends PanacheEntity {
         this.name = name;
     }
 
-    public Integer getVintage() {
+    public String getVintage() {
         return vintage;
     }
 
-    public void setVintage(Integer vintage) {
+    public void setVintage(String vintage) {
         this.vintage = vintage;
     }
 
