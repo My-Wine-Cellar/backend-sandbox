@@ -1,6 +1,6 @@
 package info.mywinecellar.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +13,11 @@ import java.util.Collections;
 import java.util.List;
 
 @Entity
-public class Region extends PanacheEntity implements Comparable<Region> {
+public class Region extends BaseEntity implements Comparable<Region> {
+
+    public Region() {
+        super();
+    }
 
     public Region(String name, String description, String weblink, Country country) {
         this.name = name;
@@ -24,19 +28,20 @@ public class Region extends PanacheEntity implements Comparable<Region> {
 
     @NotNull
     @Column(name = "name")
-    private String name;
+    public String name;
 
     @Column(name = "description", length = 8192)
-    private String description;
+    public String description;
 
     @Column(name = "weblink")
-    private String weblink;
+    public String weblink;
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "country_id", referencedColumnName = "id")
-    private Country country;
+    public Country country;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "region_area",
             joinColumns =
@@ -44,11 +49,11 @@ public class Region extends PanacheEntity implements Comparable<Region> {
             inverseJoinColumns =
             @JoinColumn(name = "area_id", referencedColumnName = "id")
     )
-    private List<Area> areas;
+    public List<Area> areas;
 
     public List<Area> getAreas() {
         areas.forEach(area -> {
-            if (area.getName().equals(this.name)) {
+            if (area.name.equals(this.name)) {
                 Collections.swap(areas, areas.indexOf(area), 0);
             }
         });
@@ -65,7 +70,4 @@ public class Region extends PanacheEntity implements Comparable<Region> {
         return "Region(" + id + ")";
     }
 
-    public Country getCountry() {
-        return country;
-    }
 }

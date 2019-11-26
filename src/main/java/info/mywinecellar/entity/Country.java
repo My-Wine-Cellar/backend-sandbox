@@ -1,7 +1,6 @@
 package info.mywinecellar.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,30 +9,36 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-public class Country extends PanacheEntity implements Comparable<Country> {
+public class Country extends BaseEntity implements Comparable<Country> {
+
+    public Country() {
+        super();
+    }
 
     public Country(String name, String flag, String description, String weblink) {
+        super();
         this.name = name;
+        this.flag = flag;
         this.description = description;
         this.weblink = weblink;
     }
 
     @NotNull
     @Column(name = "name")
-    private String name;
+    public String name;
 
     @Column(name = "flag")
-    private String flag;
+    public String flag;
 
     @Column(name = "description", length = 8192)
-    private String description;
+    public String description;
 
     @Column(name = "weblink")
-    private String weblink;
+    public String weblink;
 
     @JsonIgnore
     @OneToMany(mappedBy = "country")
-    private List<Region> regions;
+    public List<Region> regions;
 
     @Override
     public int compareTo(Country c) {

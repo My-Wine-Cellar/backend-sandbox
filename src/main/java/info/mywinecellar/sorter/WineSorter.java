@@ -28,13 +28,13 @@ public class WineSorter implements Comparator<Wine> {
             return 0;
 
         if (country) {
-            Area a1 = w1.getProducer().getAreas().get(0);
-            Region r1 = a1.getRegions().get(0);
-            Country c1 = r1.getCountry();
+            Area a1 = w1.producer.areas.get(0);
+            Region r1 = a1.regions.get(0);
+            Country c1 = r1.country;
 
-            Area a2 = w2.getProducer().getAreas().get(0);
-            Region r2 = a2.getRegions().get(0);
-            Country c2 = r2.getCountry();
+            Area a2 = w2.producer.areas.get(0);
+            Region r2 = a2.regions.get(0);
+            Country c2 = r2.country;
 
             result = c1.compareTo(c2);
             if (result != 0)
@@ -49,19 +49,19 @@ public class WineSorter implements Comparator<Wine> {
                 return result;
         }
 
-        result = w1.getProducer().compareTo(w2.getProducer());
+        result = w1.producer.compareTo(w2.producer);
         if (result != 0)
             return result;
 
-        result = w1.getName().compareTo(w2.getName());
+        result = w1.name.compareTo(w2.name);
         if (result != 0)
             return result;
 
-        result = w1.getVintage().compareTo(w2.getVintage());
+        result = w1.vintage.compareTo(w2.vintage);
         if (result != 0)
             return result;
 
-        result = w1.getSize().compareTo(w2.getSize());
+        result = w1.size.compareTo(w2.size);
         if (result != 0)
             return result;
 

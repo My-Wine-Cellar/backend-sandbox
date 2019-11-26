@@ -1,7 +1,5 @@
 package info.mywinecellar.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,12 +10,17 @@ import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "barrel_component")
-public class BarrelComponent extends PanacheEntity implements Comparable<BarrelComponent> {
+public class BarrelComponent extends BaseEntity implements Comparable<BarrelComponent> {
 
     private static final String NOT_NULL_MESSAGE = "This field is required";
 
+    public BarrelComponent() {
+        super();
+    }
+
     public BarrelComponent(Byte percentage, Integer size, Integer aging,
                            GrapeComponent grapeComponent, Barrel barrel) {
+        super();
         this.percentage = percentage;
         this.size = size;
         this.aging = aging;
@@ -51,7 +54,7 @@ public class BarrelComponent extends PanacheEntity implements Comparable<BarrelC
         int result = percentage.compareTo(bc.percentage);
 
         if (result == 0)
-            return barrel.getName().compareTo(bc.barrel.getName());
+            return barrel.name.compareTo(bc.barrel.name);
 
         return result;
     }

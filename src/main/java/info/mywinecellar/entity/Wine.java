@@ -15,9 +15,14 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-public class Wine extends PanacheEntity implements Comparable<Wine> {
+public class Wine extends BaseEntity implements Comparable<Wine> {
 
     public Wine() {}
+
+    public Wine(String name) {
+        super();
+        this.name = name;
+    }
 
     public Wine(String name, Integer vintage, Float alcohol, Float size,
                 Float acid, Float pH, Integer bottleAging, String description, String weblink,
@@ -39,69 +44,69 @@ public class Wine extends PanacheEntity implements Comparable<Wine> {
     @NotNull
     @NotEmpty
     @Column(name = "name")
-    private String name;
+    public String name;
 
     @NotNull
     @Digits(integer = 4, fraction = 0)
     @Column(name = "vintage")
-    private Integer vintage;
+    public Integer vintage;
 
     @Column(name = "alcohol")
-    private Float alcohol;
+    public Float alcohol;
 
     @NotNull
     @Column(name = "size")
-    private Float size;
+    public Float size;
 
     @Column(name = "acid")
-    private Float acid;
+    public Float acid;
 
     @Column(name = "ph")
-    private Float pH;
+    public Float pH;
 
     @Column(name = "bottle_aging")
-    private Integer bottleAging;
+    public Integer bottleAging;
 
     @Column(name = "description", length = 8192)
-    private String description;
+    public String description;
 
     @Column(name = "weblink")
-    private String weblink;
+    public String weblink;
 
     @Column(name = "subarea")
-    private String subarea;
+    public String subarea;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "producer_id", referencedColumnName = "id")
-    private Producer producer;
+    public Producer producer;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "wine", cascade = CascadeType.REMOVE)
-    private List<GrapeComponent> grapes;
+    public List<GrapeComponent> grapes;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "wine")
-    private List<Bottle> bottles;
+    public List<Bottle> bottles;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "wine")
-    private List<GenericTastingNotes> genericTastingNotes;
+    public List<GenericTastingNotes> genericTastingNotes;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "wine")
-    private List<Tasted> tasted;
+    public List<Tasted> tasted;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "wine")
-    private List<Review> reviews;
+    public List<Review> reviews;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "wine")
-    private List<Wishlist> wishlists;
+    public List<Wishlist> wishlists;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "closure_id", referencedColumnName = "id")
-    private Closure closure;
+    public Closure closure;
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "shape_id", referencedColumnName = "id")
-    private Shape shape;
+    public Shape shape;
 
     @Override
     public int compareTo(Wine w) {
@@ -112,22 +117,5 @@ public class Wine extends PanacheEntity implements Comparable<Wine> {
     public String toString() {
         return "Wine(" + id + ")";
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public Integer getVintage() {
-        return vintage;
-    }
-
-    public Float getSize() {
-        return size;
-    }
-
-    public Producer getProducer() {
-        return producer;
-    }
-
 
 }

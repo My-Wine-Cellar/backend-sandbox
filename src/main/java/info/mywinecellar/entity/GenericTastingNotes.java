@@ -1,7 +1,6 @@
 package info.mywinecellar.entity;
 
 import com.github.cliftonlabs.json_simple.JsonObject;
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.Column;
@@ -16,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @Entity
-public class GenericTastingNotes extends PanacheEntity implements Comparable<GenericTastingNotes> {
+public class GenericTastingNotes extends BaseEntity implements Comparable<GenericTastingNotes> {
 
     public static final String SIGHT = "sight";
     public static final String SIGHT_CLARITY = "clarity";
@@ -61,6 +60,10 @@ public class GenericTastingNotes extends PanacheEntity implements Comparable<Gen
     public static final String CONCLUSION_NOTES = "notes";
     public static final String CONCLUSION_OTHER = "other";
 
+    public GenericTastingNotes() {
+        super();
+    }
+
     public GenericTastingNotes(Map<String, List<String>> sight, Map<String, List<String>> nose,
                                Map<String, List<String>> palette, Map<String, List<String>> conclusion,
                                Boolean show, Date date, User user, Wine wine) {
@@ -80,26 +83,26 @@ public class GenericTastingNotes extends PanacheEntity implements Comparable<Gen
 
     @NotNull
     @Column(name = "show")
-    private Boolean show;
+    public Boolean show;
 
     @NotNull
     @Column(name = "date")
-    private Date date;
+    public Date date;
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    public User user;
 
     @NotNull
     @ManyToOne
     @JoinColumn(name = "wine_id", referencedColumnName = "id")
-    private Wine wine;
+    public Wine wine;
 
     @NotNull
     @Column(name = "data")
     @Type(type = "info.mywinecellar.hibernate.JSONB")
-    private Map<String, Serializable> data;
+    public Map<String, Serializable> data;
 
     @Override
     public int compareTo(GenericTastingNotes gtn) {
@@ -109,10 +112,6 @@ public class GenericTastingNotes extends PanacheEntity implements Comparable<Gen
     @Override
     public String toString() {
         return "GenericTastingNotes(" + id + ")";
-    }
-
-    public Wine getWine() {
-        return wine;
     }
 
 }

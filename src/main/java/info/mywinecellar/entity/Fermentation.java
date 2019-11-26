@@ -1,7 +1,5 @@
 package info.mywinecellar.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -9,17 +7,21 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-public class Fermentation extends PanacheEntity implements Comparable<Fermentation> {
+public class Fermentation extends BaseEntity implements Comparable<Fermentation> {
+
+    public Fermentation() {
+        super();
+    }
 
     @NotNull
     @Column(name = "days")
-    private Byte days;
+    public Byte days;
 
     @Column(name = "temperature")
-    private Float temperature;
+    public Float temperature;
 
     @OneToMany(mappedBy = "fermentation")
-    private List<GrapeComponent> grapes;
+    public List<GrapeComponent> grapes;
 
     @Override
     public int compareTo(Fermentation m) {
