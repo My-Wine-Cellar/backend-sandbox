@@ -32,11 +32,11 @@ public class ReviewSorter implements Comparator<Review> {
         if (r1.id.equals(r2.id))
             return 0;
 
-        result = r1.getStars().compareTo(r2.getStars());
+        result = r1.stars.compareTo(r2.stars);
         if (result != 0)
             return -result;
 
-        return wineSorter.compare(r1.getWine(), r2.getWine());
+        return wineSorter.compare(r1.wine, r2.wine);
     }
 }
 

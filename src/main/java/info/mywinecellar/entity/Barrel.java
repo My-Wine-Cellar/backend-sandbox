@@ -1,7 +1,5 @@
 package info.mywinecellar.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +9,11 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-public class Barrel extends PanacheEntity implements Comparable<Barrel> {
+public class Barrel extends BaseEntity implements Comparable<Barrel> {
+
+    public Barrel() {
+        super();
+    }
 
     public Barrel(String name, String description, String weblink) {
         super();
@@ -22,18 +24,18 @@ public class Barrel extends PanacheEntity implements Comparable<Barrel> {
 
     @NotNull
     @Column(name = "name")
-    private String name;
+    public String name;
 
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "description", length = 8192)
-    private String description;
+    public String description;
 
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "weblink")
-    private String weblink;
+    public String weblink;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "barrel")
-    private List<BarrelComponent> barrelComponents;
+    public List<BarrelComponent> barrelComponents;
 
     @Override
     public int compareTo(Barrel b) {
@@ -45,7 +47,4 @@ public class Barrel extends PanacheEntity implements Comparable<Barrel> {
         return "Barrel(" + id + ")";
     }
 
-    public String getName() {
-        return name;
-    }
 }

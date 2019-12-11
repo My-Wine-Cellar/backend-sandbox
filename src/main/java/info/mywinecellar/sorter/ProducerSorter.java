@@ -17,7 +17,7 @@ public class ProducerSorter implements Comparator<Producer> {
         if (p1.id.equals(p2.id))
             return 0;
 
-        return p1.getName().compareTo(p2.getName());
+        return p1.name.compareTo(p2.name);
     }
 }
 

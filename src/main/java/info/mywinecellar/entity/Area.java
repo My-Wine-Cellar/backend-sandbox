@@ -1,7 +1,6 @@
 package info.mywinecellar.entity;
 
 import info.mywinecellar.sorter.ProducerSorter;
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,9 +14,14 @@ import java.util.Collections;
 import java.util.List;
 
 @Entity
-public class Area extends PanacheEntity implements Comparable<Area> {
+public class Area extends BaseEntity implements Comparable<Area> {
+
+    public Area() {
+        super();
+    }
 
     public Area(String name, String description, String weblink) {
+        super();
         this.name = name;
         this.description = description;
         this.weblink = weblink;
@@ -25,13 +29,13 @@ public class Area extends PanacheEntity implements Comparable<Area> {
 
     @NotNull
     @Column(name = "name")
-    private String name;
+    public String name;
 
     @Column(name = "description", length = 8192)
-    private String description;
+    public String description;
 
     @Column(name = "weblink")
-    private String weblink;
+    public String weblink;
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "areas")
     public List<Region> regions;
@@ -46,7 +50,7 @@ public class Area extends PanacheEntity implements Comparable<Area> {
                inverseJoinColumns =
                @JoinColumn(name = "producer_id", referencedColumnName = "id")
     )
-    private List<Producer> producers;
+    public List<Producer> producers;
 
     public List<Producer> getProducers() {
         Collections.sort(producers, new ProducerSorter());
@@ -63,11 +67,4 @@ public class Area extends PanacheEntity implements Comparable<Area> {
         return "Area(" + id + ")";
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public List<Region> getRegions() {
-        return regions;
-    }
 }

@@ -5,7 +5,6 @@ import info.mywinecellar.sorter.GenericTastingNotesSorter;
 import info.mywinecellar.sorter.ReviewSorter;
 import info.mywinecellar.sorter.TastedSorter;
 import info.mywinecellar.sorter.WishlistSorter;
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,46 +16,50 @@ import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class User extends PanacheEntity {
+public class User extends BaseEntity {
+
+    public User() {
+        super();
+    }
 
     @Column(name = "password")
-    private String password;
+    public String password;
 
     @Column(name = "username")
-    private String username;
+    public String username;
 
     @Column(name = "first_name")
-    private String firstName;
+    public String firstName;
 
     @Column(name = "middle_name")
-    private String middleName;
+    public String middleName;
 
     @Column(name = "last_name")
-    private String lastName;
+    public String lastName;
 
     @Column(name = "email")
-    private String email;
+    public String email;
 
     @Column(name = "last_login")
-    private Date lastLogin;
+    public Date lastLogin;
 
     @Column(name = "enabled")
-    private boolean enabled;
+    public boolean enabled;
 
     @OneToMany(mappedBy = "user")
-    private List<Bottle> bottles;
+    public List<Bottle> bottles;
 
     @OneToMany(mappedBy = "user")
-    private List<GenericTastingNotes> genericTastingNotes;
+    public List<GenericTastingNotes> genericTastingNotes;
 
     @OneToMany(mappedBy = "user")
-    private List<Review> reviews;
+    public List<Review> reviews;
 
     @OneToMany(mappedBy = "user")
-    private List<Tasted> tasted;
+    public List<Tasted> tasted;
 
     @OneToMany(mappedBy = "user")
-    private List<Wishlist> wishlist;
+    public List<Wishlist> wishlist;
 
     public List<Bottle> getBottles() {
         Collections.sort(bottles, new BottleSorter());

@@ -30,7 +30,7 @@ public class TastedSorter implements Comparator<Tasted> {
         if (t1.id.equals(t2.id))
             return 0;
 
-        return wineSorter.compare(t1.getWine(), t2.getWine());
+        return wineSorter.compare(t1.wine, t2.wine);
     }
 }
 

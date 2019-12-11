@@ -25,7 +25,7 @@ public class BottleSorter implements Comparator<Bottle> {
         if (b1.id.equals(b2.id))
             return 0;
 
-        return wineSorter.compare(b1.getWine(), b2.getWine());
+        return wineSorter.compare(b1.wine, b2.wine);
     }
 }
 

@@ -30,7 +30,7 @@ public class WishlistSorter implements Comparator<Wishlist> {
         if (w1.id.equals(w2.id))
             return 0;
 
-        return wineSorter.compare(w1.getWine(), w2.getWine());
+        return wineSorter.compare(w1.wine, w2.wine);
     }
 }
 

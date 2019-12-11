@@ -122,12 +122,7 @@
             <li>Configure your application in <code>src/main/resources/application.properties</code>.
             </li>
         </ul>
-
-        <h2>How do I get rid of this page?</h2>
-        <p>Just delete the <code>src/main/resources/META-INF/resources/index.html</code> file.</p>
-    </div>
-    <div class="right-column">
-        <div class="right-section">
+        <div class="left-section">
             <h3>Application</h3>
             <ul>
                 <li>GroupId: info.mywinecellar</li>
@@ -136,16 +131,28 @@
                 <li>Quarkus Version: 1.0.0.CR1</li>
             </ul>
         </div>
-<!--        <div class="right-section">-->
-<!--            <h3>Next steps</h3>-->
-<!--            <ul>-->
-<!--                <li><a href="https://quarkus.io/guides/maven-tooling.html" target="_blank">Setup your IDE</a></li>-->
-<!--                <li><a href="https://quarkus.io/guides/getting-started.html" target="_blank">Getting started</a></li>-->
-<!--                <li><a href="https://quarkus.io" target="_blank">Quarkus Web Site</a></li>-->
-<!--            </ul>-->
-<!--        </div>-->
+    </div>
+    <div class="right-column">
         <div class="right-section">
-            <h3>Endpoints</h3>
+            <h3>Endpoints: Country</h3>
+            <ul>
+                <li><a href="/country/all" target="_blank">Countries</a></li>
+                <li><a href="/d" target="_blank">Wine producing Countries</a></li>
+                <li><a href="/country/185" target="_blank">USA</a></li>
+            </ul>
+        </div>
+        <div class="right-section">
+            <h3>Endpoints: Grape</h3>
+            <ul>
+                <li><a href="/grape/all" target="_blank">Grapes</a></li>
+                <li><a href="/grape/red" target="_blank">Red Grapes</a></li>
+                <li><a href="/grape/white" target="_blank">White Grapes</a></li>
+                <li><a href="/grape/1" target="_blank">Airen</a></li>
+                <li><a href="/grape/112" target="_blank">Bonarda</a></li>
+            </ul>
+        </div>
+        <div class="right-section">
+            <h3>Endpoints: Producer -> Wine</h3>
             <ul>
                 <li><a href="/producer/all" target="_blank">All Producers</a></li>
                 <li><a href="/wine/all" target="_blank">All Wines</a></li>
@@ -153,7 +160,5 @@
         </div>
     </div>
 </div>
-
-
 </body>
 </html>

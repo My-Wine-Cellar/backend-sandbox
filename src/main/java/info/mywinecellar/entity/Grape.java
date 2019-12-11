@@ -1,7 +1,6 @@
 package info.mywinecellar.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,7 +14,11 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-public class Grape extends PanacheEntity implements Comparable<Grape> {
+public class Grape extends BaseEntity implements Comparable<Grape> {
+
+    public Grape() {
+        super();
+    }
 
     public Grape(String name, String color, String description, String weblink) {
         this.name = name;
@@ -26,21 +29,21 @@ public class Grape extends PanacheEntity implements Comparable<Grape> {
 
     @NotNull
     @Column(name = "name")
-    private String name;
+    public String name;
 
     @NotNull
     @Column(name = "color")
-    private String color;
+    public String color;
 
     @Column(name = "description", length = 8192)
-    private String description;
+    public String description;
 
     @Column(name = "weblink")
-    private String weblink;
+    public String weblink;
 
     @JsonIgnore
     @OneToMany
-    private List<Grape> alternativeNames;
+    public List<Grape> alternativeNames;
 
     @JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -50,11 +53,11 @@ public class Grape extends PanacheEntity implements Comparable<Grape> {
             inverseJoinColumns =
             @JoinColumn(name = "area_id", referencedColumnName = "id")
     )
-    private List<Area> areas;
+    public List<Area> areas;
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "grape")
-    private List<GrapeComponent> grapeComponents;
+    public List<GrapeComponent> grapeComponents;
 
     @Override
     public int compareTo(Grape g) {
@@ -66,7 +69,4 @@ public class Grape extends PanacheEntity implements Comparable<Grape> {
         return "Grape(" + id + ")";
     }
 
-    public String getName() {
-        return name;
-    }
 }

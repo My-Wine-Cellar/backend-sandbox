@@ -1,7 +1,5 @@
 package info.mywinecellar.entity;
 
-import io.quarkus.hibernate.orm.panache.PanacheEntity;
-
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,9 +9,14 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-public class Shape extends PanacheEntity implements Comparable<Shape> {
+public class Shape extends BaseEntity implements Comparable<Shape> {
+
+    public Shape() {
+        super();
+    }
 
     public Shape(String name, String description, String weblink) {
+        super();
         this.name = name;
         this.description = description;
         this.weblink = weblink;
@@ -21,18 +24,18 @@ public class Shape extends PanacheEntity implements Comparable<Shape> {
 
     @NotNull
     @Column(name = "name")
-    private String name;
+    public String name;
 
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "description", length = 8192)
-    private String description;
+    public String description;
 
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "weblink")
-    private String weblink;
+    public String weblink;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "shape")
-    private List<Wine> wines;
+    public List<Wine> wines;
 
     @Override
     public int compareTo(Shape s) {

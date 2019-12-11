@@ -30,7 +30,7 @@ public class GenericTastingNotesSorter implements Comparator<GenericTastingNotes
         if (g1.id.equals(g2.id))
             return 0;
 
-        return wineSorter.compare(g1.getWine(), g2.getWine());
+        return wineSorter.compare(g1.wine, g2.wine);
     }
 }
 
