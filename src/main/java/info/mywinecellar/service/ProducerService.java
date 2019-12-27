@@ -3,18 +3,23 @@ package info.mywinecellar.service;
 import info.mywinecellar.entity.Producer;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.transaction.Transactional;
 import java.util.List;
 
 @ApplicationScoped
 public class ProducerService extends AbstractService {
 
+    /**
+     * @param producer producer
+     */
     public void persist(Producer producer) {
         checkObjectNull(producer);
         log.info("==== Adding a new Producer --> " + producer.name);
         producer.persist();
     }
 
+    /**
+     * @return all producers
+     */
     public List<Producer> listAll() {
         List<Producer> producers = Producer.listAll();
         checkObjectListNull(producers);
@@ -22,6 +27,10 @@ public class ProducerService extends AbstractService {
         return producers;
     }
 
+    /**
+     * @param id id
+     * @return producer
+     */
     public Producer findById(Long id) {
         Producer producer = Producer.findById(id);
         checkObjectNull(producer);

@@ -13,8 +13,6 @@ import java.util.List;
 @Path("/d")
 public class RootResource {
 
-    // TODO test all endpoints and then merge
-
     @Inject
     CountryService countryService;
 
