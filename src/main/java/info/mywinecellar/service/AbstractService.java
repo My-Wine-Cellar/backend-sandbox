@@ -15,7 +15,7 @@ abstract class AbstractService {
      * Checks to see if Object passed in is null
      *
      * @param o Object
-     * @throws WebApplicationException Response.Status.NO_CONTENT
+     * @throws WebApplicationException Response.Status.NOT_FOUND
      */
     void checkObjectNull(Object o) throws WebApplicationException {
         if (o == null) {
@@ -28,7 +28,7 @@ abstract class AbstractService {
      * Checks to see if List<?>Object</?> is null
      *
      * @param list Object
-     * @throws WebApplicationException Response.Status.NO_CONTENT
+     * @throws WebApplicationException Response.Status.NOT_FOUND
      */
     void checkObjectListNull(List<?> list) throws WebApplicationException {
         if (list.isEmpty()) {

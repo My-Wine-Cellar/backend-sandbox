@@ -19,11 +19,6 @@ public class WineResource {
     @Inject
     WineService wineService;
 
-    /**
-     * Retrieve the list of Wine's
-     *
-     * @return List<Wine>
-     */
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/all")
@@ -31,11 +26,6 @@ public class WineResource {
         return wineService.listAll();
     }
 
-    /**
-     * Add a new Wine
-     *
-     * @param wine Wine entity
-     */
     @Transactional
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
