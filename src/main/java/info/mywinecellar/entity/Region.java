@@ -9,7 +9,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -36,6 +35,7 @@ public class Region extends BaseEntity implements Comparable<Region> {
     @Column(name = "weblink")
     public String weblink;
 
+    @JsonIgnore
     @NotNull
     @ManyToOne
     @JoinColumn(name = "country_id", referencedColumnName = "id")
@@ -51,14 +51,15 @@ public class Region extends BaseEntity implements Comparable<Region> {
     )
     public List<Area> areas;
 
-    public List<Area> getAreas() {
-        areas.forEach(area -> {
-            if (area.name.equals(this.name)) {
-                Collections.swap(areas, areas.indexOf(area), 0);
-            }
-        });
-        return areas;
-    }
+    // throws StackOverflowError
+//    public List<Area> getAreas() {
+//        areas.forEach(area -> {
+//            if (area.name.equals(this.name)) {
+//                Collections.swap(areas, areas.indexOf(area), 0);
+//            }
+//        });
+//        return areas;
+//    }
 
     @Override
     public int compareTo(Region r) {
