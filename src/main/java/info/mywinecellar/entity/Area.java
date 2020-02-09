@@ -1,5 +1,6 @@
 package info.mywinecellar.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import info.mywinecellar.sorter.ProducerSorter;
 
 import javax.persistence.CascadeType;
@@ -37,12 +38,15 @@ public class Area extends BaseEntity implements Comparable<Area> {
     @Column(name = "weblink")
     public String weblink;
 
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "areas")
     public List<Region> regions;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "areas")
     public List<Grape> primaryGrapes;
 
+    @JsonIgnore
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "area_producer",
                joinColumns =
